@@ -34,16 +34,16 @@ from PySide2 import QtWidgets, QtCore, QtGui
 from functools import partial
 
 # Internal
-from RiggingAssignment.rigging_tools.gen_utils import (freeze_transforms, delete_history, center_pivot,
+from auto_rigging_tool_box.rigging_tools.gen_utils import (freeze_transforms, delete_history, center_pivot,
                                      mirror_joints, orient_joints, reset_translation,
                                      reset_rotation, reset_scale, reset_translation_rotation)
-from RiggingAssignment.rigging_tools.curve_utils import (set_override_color, create_curve_circle,
+from auto_rigging_tool_box.rigging_tools.curve_utils import (set_override_color, create_curve_circle,
                                                          create_curve_cube, create_ik_curve, create_e_curve,
                                                          create_k_curve,create_arrow_curve, create_diamond_curve,
                                                          create_arrow_four_curve, create_arrow_double_curve)
-from RiggingAssignment.rigging_tools.finger_fk_utils import (create_middle_fk, create_ring_fk, create_pinky_fk,
+from auto_rigging_tool_box.rigging_tools.finger_fk_utils import (create_middle_fk, create_ring_fk, create_pinky_fk,
                                                              create_thumb_fk,create_index_fk)
-from RiggingAssignment.rigging_tools.limb_ik_utils import create_limb_ik
+from auto_rigging_tool_box.rigging_tools.limb_ik_utils import create_limb_ik
 
 
  # External
