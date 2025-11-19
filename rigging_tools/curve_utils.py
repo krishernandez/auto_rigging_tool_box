@@ -1,4 +1,4 @@
- #!/usr/bin/env python
+#!/usr/bin/env python
 #SETMODE 777
 
 #----------------------------------------------------------------------------------------#
@@ -8,16 +8,19 @@
 :author: Kris Hernandez
 
 :synopsis:
+Module for custom curve utils. 
 
 
 :description:
+This module contains custom curve utils including: creating custom curves, overwriting curve
+colors and setting default colors for a basic rigging workflow. 
 
 
 :applications:
     Maya
 
 :see_also:
-
+N/A
 """
 
 #----------------------------------------------------------------------------------------#
@@ -43,8 +46,7 @@ except ImportError:
 
 def set_override_color(color_index):
     """
-    This function set the override color of an object in Maya when selected.
-
+    This function s the override color of an object in Maya when selected.
     """
     sel = cmds.ls(selection=True) or []
     sel = cmds.ls(selection=True) or []

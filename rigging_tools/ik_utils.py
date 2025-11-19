@@ -8,10 +8,10 @@
 :author: Kris Hernandez
 
 :synopsis:
-
+Module for any ik utils. 
 
 :description:
-
+This module contains utils for making with ik utils, such as creating ik rigs for legs and arms.
 
 :applications:
     Maya

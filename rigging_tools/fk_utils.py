@@ -8,16 +8,17 @@
 :author: Kris Hernandez
 
 :synopsis:
-
+Module for any fk utils.
 
 :description:
-
+This module contains utils for making with fk utils, such as creating finger, limb and
+neck controls.
 
 :applications:
     Maya
 
 :see_also:
-
+N/A
 """
 
 #----------------------------------------------------------------------------------------#

@@ -20,6 +20,11 @@ into the scene. More to be added in future weeks.
     Maya
 
 :see_also:
+rigging_tools.curve_utils 
+rigging_tools.fk_utils 
+rigging_tools.gen_utils
+rigging_tools.ik_utils 
+rigging_tools.squash_stretch_utils
 
 """
 
@@ -41,9 +46,9 @@ from auto_rigging_tool_box.rigging_tools.curve_utils import (set_override_color,
                                                          create_curve_cube, create_ik_curve, create_e_curve,
                                                          create_k_curve,create_arrow_curve, create_diamond_curve,
                                                          create_arrow_four_curve, create_arrow_double_curve)
-from auto_rigging_tool_box.rigging_tools.finger_fk_utils import (create_middle_fk, create_ring_fk, create_pinky_fk,
-                                                             create_thumb_fk,create_index_fk)
-from auto_rigging_tool_box.rigging_tools.limb_ik_utils import create_limb_ik
+from auto_rigging_tool_box.rigging_tools.fk_utils import (create_middle_fk, create_ring_fk, create_pinky_fk,
+                                                          create_thumb_fk, create_index_fk)
+from auto_rigging_tool_box.rigging_tools.ik_utils import create_limb_ik
 
 
  # External
@@ -83,7 +88,9 @@ class RiggingToolsGUI(QtWidgets.QDialog):
         self.init_gui()
 
     def init_gui(self):
-        """Initialize the GUI layout and buttons."""
+        """
+        Initialize the GUI layout and buttons.
+        """
         main_layout = QtWidgets.QVBoxLayout(self)
 
         # Tab widget
