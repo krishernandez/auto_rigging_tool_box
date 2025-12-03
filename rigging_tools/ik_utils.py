@@ -46,7 +46,6 @@ def create_ik_controls(limb_type="arm", selection=True):
     """
     Creates an IK handle for a selected limb (arm or leg).
     """
-    # Get selected joints
     if selection:
         sel = cmds.ls(sl=True)
         if len(sel) < 3:
@@ -57,14 +56,32 @@ def create_ik_controls(limb_type="arm", selection=True):
         cmds.warning("No joints selected.")
         return
 
-    start_joint = joints[0]
-    mid_joint = joints[1]
-    end_joint = joints[2]
+    start_joint, mid_joint, end_joint = joints
 
-    # Name the IK handle
+    # Detect limb axis direction (X, Y, or Z)
+    start_pos = cmds.xform(start_joint, q=True, ws=True, t=True)
+    end_pos   = cmds.xform(end_joint,   q=True, ws=True, t=True)
+
+    vec = [
+        end_pos[0] - start_pos[0],
+        end_pos[1] - start_pos[1],
+        end_pos[2] - start_pos[2]
+    ]
+
+    # Determine dominant axis
+    axis_index = max(range(3), key=lambda i: abs(vec[i]))
+
+    # Map axis - circle normal
+    axis_normals = {
+        0: [1, 0, 0],   # X axis limb - face X
+        1: [0, 1, 0],   # Y axis limb - face Y
+        2: [0, 0, 1]    # Z axis limb - face Z
+    }
+
+    normal = axis_normals[axis_index]
+
+    # Create IK handle
     ik_name = "{}_IK".format(limb_type)
-
-    # Create the IK handle
     ik_handle = cmds.ikHandle(
         name=ik_name,
         startJoint=start_joint,
@@ -74,11 +91,11 @@ def create_ik_controls(limb_type="arm", selection=True):
 
     # Create a control at the IK handle position
     ctrl_name = "{}_CTRL".format(limb_type)
-    ctrl = cmds.circle(name=ctrl_name, normal=[1,0,0], radius=2)[0]
+    ctrl = cmds.circle(name=ctrl_name, normal=normal, radius=2)[0]
+
     cmds.delete(cmds.pointConstraint(ik_handle, ctrl))
     cmds.parent(ik_handle, ctrl)
 
-    cmds.select(clear=True)
     cmds.inViewMessage(
         amg=f"✅ IK setup created for <hl>{limb_type}</hl> limb",
         pos="topCenter",
