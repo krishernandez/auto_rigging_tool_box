@@ -71,11 +71,17 @@ def create_ik_controls(limb_type="arm", selection=True):
         solver="ikRPsolver"
     )[0]
 
-    # Optionally create a control at the IK handle position
+    # Create a control at the IK handle position
     ctrl_name = "{}_CTRL".format(limb_type)
     ctrl = cmds.circle(name=ctrl_name, normal=[1,0,0], radius=2)[0]
     cmds.delete(cmds.pointConstraint(ik_handle, ctrl))
     cmds.parent(ik_handle, ctrl)
 
+    cmds.select(clear=True)
+    cmds.inViewMessage(
+        amg=f"✅ IK setup created for <hl>{limb_type}</hl> limb",
+        pos="topCenter",
+        fade=True
+    )
     print("Created IK handle '{}' with control '{}'.".format(ik_handle, ctrl))
     return ik_handle

@@ -20,8 +20,7 @@ instructions, the goal of this tool is to be as user-friendly as possible.
 
 # TODO 
 - Add the option to rename joints and controls based on a set dictionary 
-- Add an automation ribbon joint tool 
-- Add a general constrain options when using custom curve utils 
+- Add an automation ribbon joint tool
 - Add the custom designed IK handle to the IK limbs automation tool
 - When dragging in the final toolbox, make it show up in one of the maya menus 
 - Clean up notification systems such as the success of the operation and warning commands 

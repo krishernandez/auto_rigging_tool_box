@@ -120,4 +120,11 @@ def create_squash_stretch_limb():
         cmds.connectAttr(squash_md + ".outputX", jnt + ".scaleY")
         cmds.connectAttr(squash_md + ".outputX", jnt + ".scaleZ")
 
+    cmds.select(clear=True)
+    cmds.inViewMessage(
+        amg=f"✅ Squash & Stretch created for <hl>{upper}</hl>, <hl>{lower}</hl>, <hl>{end}</hl>",
+        pos="topCenter",
+        fade=True
+    )
+
     print("Squash & Stretch created for:", upper, lower, end)

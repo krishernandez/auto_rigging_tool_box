@@ -49,6 +49,7 @@ from auto_rigging_tool_box.rigging_tools.curve_utils import (set_override_color,
 from auto_rigging_tool_box.rigging_tools.ik_utils import create_ik_controls
 from auto_rigging_tool_box.rigging_tools.fk_utils import create_fk_controls
 from auto_rigging_tool_box.rigging_tools.squash_stretch_utils import create_squash_stretch_limb
+from auto_rigging_tool_box.rigging_tools.skin_utils import (bind_skin, mirror_skin_weights, delete_skin)
 
 
  # External
@@ -144,6 +145,31 @@ class RiggingToolsGUI(QtWidgets.QDialog):
         # Add widgets
         joint_layout.addWidget(self.mirror_joints_btn)
         joint_layout.addWidget(self.orient_joints_btn)
+        general_tab_layout.addWidget(gen_group)
+
+        # -------------------------------
+
+        # Skin Utils Group
+        skin_group = QtWidgets.QGroupBox("Skin Bind Utils")
+        skin_layout = QtWidgets.QVBoxLayout(skin_group)
+        self.bind_skin_btn = QtWidgets.QPushButton("Bind Skin")
+        self.mirror_skin_btn = QtWidgets.QPushButton("Mirror Skin")
+        self.delete_skin_btn = QtWidgets.QPushButton("Delete Skin Cluster")
+        skin_layout.addWidget(self.bind_skin_btn)
+        skin_layout.addWidget(self.mirror_skin_btn)
+        skin_layout.addWidget(self.delete_skin_btn)
+
+        general_tab_layout.addWidget(skin_group)
+
+        # Connect buttons
+        self.bind_skin_btn.clicked.connect(bind_skin)
+        self.mirror_skin_btn.clicked.connect(mirror_skin_weights)
+        self.delete_skin_btn.clicked.connect(delete_skin)
+
+        # Add widgets
+        skin_layout.addWidget(self.bind_skin_btn)
+        skin_layout.addWidget(self.mirror_skin_btn)
+        skin_layout.addWidget(self.delete_skin_btn)
         general_tab_layout.addWidget(gen_group)
 
         # -------------------------------
