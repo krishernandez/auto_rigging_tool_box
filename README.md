@@ -23,6 +23,7 @@ instructions, the goal of this tool is to be as user-friendly as possible.
 - Add the option to rename joints and controls based on a set dictionary 
 - Refactor control curves into a set dictionary 
 - Add an automation ribbon joint tool
+- Add default color override for left, right and center control curves 
 - Add the custom designed IK handle to the IK limbs automation tool
 - When dragging in the final toolbox, make it show up in one of the maya menus 
 - Add text box for tips, tricks and instructions on how to use each tool 
