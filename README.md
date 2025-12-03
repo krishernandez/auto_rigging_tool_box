@@ -14,16 +14,16 @@ instructions, the goal of this tool is to be as user-friendly as possible.
 
 # BUG LOG
 - Squash and stretch functions bug out on limbs 
-- Pole vector selection currently not functional 
+- Pole vector is not functional at this time 
+- Ribbon joint tool is not functional at this time 
 - Currently, the only way to bring in this rigging tool box is to call it within the maya script.
 
 
 # TODO 
 - Add the option to rename joints and controls based on a set dictionary 
+- Refactor control curves into a set dictionary 
 - Add an automation ribbon joint tool
 - Add the custom designed IK handle to the IK limbs automation tool
 - When dragging in the final toolbox, make it show up in one of the maya menus 
-- Clean up notification systems such as the success of the operation and warning commands 
 - Add text box for tips, tricks and instructions on how to use each tool 
-- Clean up and rename certain tabs on tool box 
-- Clean up documentation
+- Clean up and rename certain tabs on tool box

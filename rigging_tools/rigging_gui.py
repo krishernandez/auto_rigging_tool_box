@@ -25,6 +25,7 @@ rigging_tools.fk_utils
 rigging_tools.gen_utils
 rigging_tools.ik_utils 
 rigging_tools.squash_stretch_utils
+rigging_tools.skin_utils 
 
 """
 
@@ -337,11 +338,13 @@ class RiggingToolsGUI(QtWidgets.QDialog):
         self.fk_btn = QtWidgets.QPushButton("Create FK Tool")
         self.ik_btn = QtWidgets.QPushButton("Create IK Tool")
         self.pole_vector_btn = QtWidgets.QPushButton("Create Pole Vector (BETA)")
+        self.ribbon_btn = QtWidgets.QPushButton("Create Ribbon Joints (BETA")
         self.squash_stretch_btn = QtWidgets.QPushButton("Create Squash & Stretch Function")
 
         limbs_layout.addWidget(self.fk_btn)
         limbs_layout.addWidget(self.ik_btn)
         limbs_layout.addWidget(self.pole_vector_btn)
+        limbs_layout.addWidget(self.ribbon_btn)
         limbs_layout.addWidget(self.squash_stretch_btn)
         auto_tab_layout.addWidget(limbs_group)
 
@@ -349,12 +352,14 @@ class RiggingToolsGUI(QtWidgets.QDialog):
         self.fk_btn.clicked.connect(create_fk_controls)
         self.ik_btn.clicked.connect(create_ik_controls)
         # self.pole_vector_btn.clicked.connect()
+        #self.ribbon_btn.clicked.connect()
         self.squash_stretch_btn.clicked.connect(create_squash_stretch_limb)
 
         # Add widgets
         limbs_layout.addWidget(self.fk_btn)
         limbs_layout.addWidget(self.ik_btn)
         limbs_layout.addWidget(self.pole_vector_btn)
+        limbs_layout.addWidget(self.ribbon_btn)
         limbs_layout.addWidget(self.squash_stretch_btn)
         auto_tab_layout.addWidget(limbs_group)
 
