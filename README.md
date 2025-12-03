@@ -15,14 +15,12 @@ instructions, the goal of this tool is to be as user-friendly as possible.
 # BUG LOG
 - Squash and stretch functions bug out on limbs 
 - Pole vector selection currently not functional 
-- IK finger set up to only work when joints are renamed to the right prefix
 - Currently, the only way to bring in this rigging tool box is to call it within the maya script.
 
 
 # TODO 
 - Add the option to rename joints and controls based on a set dictionary 
 - Add an automation ribbon joint tool 
-- Add a simple shortcuts to bind, mirror and delete skin binding
 - Add a general constrain options when using custom curve utils 
 - Add the custom designed IK handle to the IK limbs automation tool
 - When dragging in the final toolbox, make it show up in one of the maya menus 

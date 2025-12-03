@@ -41,7 +41,7 @@ except ImportError:
 #----------------------------------------------------------------------------------------#
 #--------------------------------------------------------------------------- FUNCTIONS --#
 
-def create_limb_ik(limb_type="arm", selection=True):
+def create_ik_controls(limb_type="arm", selection=True):
     """
     Creates an IK handle for a selected limb (arm or leg).
     """

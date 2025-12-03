@@ -41,10 +41,9 @@ except ImportError:
 
 #----------------------------------------------------------------------------------------#
 #--------------------------------------------------------------------------- FUNCTIONS --#
-import maya.cmds as cmds
 
 
-def create_fk_controls_from_selection():
+def create_fk_controls():
     """
     Creates FK controls for for nay selected joint chain
     """
@@ -67,7 +66,7 @@ def create_fk_controls_from_selection():
     for i, jnt in enumerate(joints):
         ctrl_name = f"{jnt}_FK_CTRL"
 
-        ctrl = cmds.circle(name=ctrl_name, normal=[1, 0, 0], radius=0.5)[0]
+        ctrl = cmds.circle(name=ctrl_name, normal=[1, 0, 0], radius=2)[0]
 
         cmds.matchTransform(ctrl, jnt)
 

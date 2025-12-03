@@ -46,9 +46,9 @@ from auto_rigging_tool_box.rigging_tools.curve_utils import (set_override_color,
                                                          create_curve_cube, create_ik_curve, create_e_curve,
                                                          create_k_curve,create_arrow_curve, create_diamond_curve,
                                                          create_arrow_four_curve, create_arrow_double_curve)
-from auto_rigging_tool_box.rigging_tools.fk_utils import (create_middle_fk, create_ring_fk, create_pinky_fk,
-                                                          create_thumb_fk, create_index_fk)
-from auto_rigging_tool_box.rigging_tools.ik_utils import create_limb_ik
+from auto_rigging_tool_box.rigging_tools.ik_utils import create_ik_controls
+from auto_rigging_tool_box.rigging_tools.fk_utils import create_fk_controls
+from auto_rigging_tool_box.rigging_tools.squash_stretch_utils import create_squash_stretch_limb
 
 
  # External
@@ -305,68 +305,31 @@ class RiggingToolsGUI(QtWidgets.QDialog):
 
         # -------------------------------
 
-        # Finger Buttons Group
-        finger_group = QtWidgets.QGroupBox("Finger Controls Utils")
-        finger_layout = QtWidgets.QVBoxLayout(finger_group)
-        self.index_btn = QtWidgets.QPushButton("Create Index Finger Controls")
-        self.middle_btn = QtWidgets.QPushButton("Create Middle Finger Controls")
-        self.ring_btn = QtWidgets.QPushButton("Create Ring Finger Controls")
-        self.pinky_btn = QtWidgets.QPushButton("Create Pinky Finger Controls")
-        self.thumb_btn = QtWidgets.QPushButton("Create Thumb Controls")
-
-        finger_layout.addWidget(self.index_btn)
-        finger_layout.addWidget(self.middle_btn)
-        finger_layout.addWidget(self.ring_btn)
-        finger_layout.addWidget(self.pinky_btn)
-        finger_layout.addWidget(self.thumb_btn)
-        auto_tab_layout.addWidget(finger_group)
-
-        # Connect buttons
-        self.index_btn.clicked.connect(create_index_fk)
-        self.middle_btn.clicked.connect(create_middle_fk)
-        self.ring_btn.clicked.connect(create_ring_fk)
-        self.pinky_btn.clicked.connect(create_pinky_fk)
-        self.thumb_btn.clicked.connect(create_thumb_fk)
-
-        # Add widgets
-        finger_layout.addWidget(self.index_btn)
-        finger_layout.addWidget(self.middle_btn)
-        finger_layout.addWidget(self.ring_btn)
-        finger_layout.addWidget(self.pinky_btn)
-        finger_layout.addWidget(self.thumb_btn)
-        auto_tab_layout.addWidget(finger_group)
-
-        # -------------------------------
-
         # Limbs Controls Buttons Group
         limbs_group = QtWidgets.QGroupBox("Automation Limbs Utils")
         limbs_layout = QtWidgets.QVBoxLayout(limbs_group)
-        self.fk_btn = QtWidgets.QPushButton("Create FK Limb")
-        self.ik_btn = QtWidgets.QPushButton("Create IK Limb")
-        self.pole_vector_btn = QtWidgets.QPushButton("Create Pole Vector")
-        self.squash_btn = QtWidgets.QPushButton("Create Squash Function")
-        self.stretch_btn = QtWidgets.QPushButton("Create Stretch Function")
+        self.fk_btn = QtWidgets.QPushButton("Create FK Tool")
+        self.ik_btn = QtWidgets.QPushButton("Create IK Tool")
+        self.pole_vector_btn = QtWidgets.QPushButton("Create Pole Vector (BETA)")
+        self.squash_stretch_btn = QtWidgets.QPushButton("Create Squash & Stretch Function")
 
         limbs_layout.addWidget(self.fk_btn)
         limbs_layout.addWidget(self.ik_btn)
         limbs_layout.addWidget(self.pole_vector_btn)
-        limbs_layout.addWidget(self.squash_btn)
-        limbs_layout.addWidget(self.stretch_btn)
+        limbs_layout.addWidget(self.squash_stretch_btn)
         auto_tab_layout.addWidget(limbs_group)
 
         # # Connect buttons
-        # self.fk_btn.clicked.connect()
-        self.ik_btn.clicked.connect(create_limb_ik)
+        self.fk_btn.clicked.connect(create_fk_controls)
+        self.ik_btn.clicked.connect(create_ik_controls)
         # self.pole_vector_btn.clicked.connect()
-        # self.squash_btn.connect()
-        # self.stretch_btn.clicked.connect()
+        self.squash_stretch_btn.clicked.connect(create_squash_stretch_limb)
 
         # Add widgets
         limbs_layout.addWidget(self.fk_btn)
         limbs_layout.addWidget(self.ik_btn)
         limbs_layout.addWidget(self.pole_vector_btn)
-        limbs_layout.addWidget(self.squash_btn)
-        limbs_layout.addWidget(self.stretch_btn)
+        limbs_layout.addWidget(self.squash_stretch_btn)
         auto_tab_layout.addWidget(limbs_group)
 
         # -------------------------------

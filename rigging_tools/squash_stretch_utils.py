@@ -121,5 +121,3 @@ def create_squash_stretch_limb():
         cmds.connectAttr(squash_md + ".outputX", jnt + ".scaleZ")
 
     print("Squash & Stretch created for:", upper, lower, end)
-
-create_squash_stretch_limb()
