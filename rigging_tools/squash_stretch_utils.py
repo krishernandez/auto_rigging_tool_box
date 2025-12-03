@@ -8,16 +8,19 @@
 :author: Kris Hernandez
 
 :synopsis:
+Module for squash and stretchy limbs 
 
 
 :description:
+This module contains the utils for making the function for squash and stretchy limbs. This 
+Takes the mesurements of the original limb and creates the stretch and squash function. 
 
 
 :applications:
     Maya
 
 :see_also:
-
+N/A
 """
 
 #----------------------------------------------------------------------------------------#
@@ -51,7 +54,8 @@ def create_squash_stretch_limb():
     sel = cmds.ls(sl=True)
 
     if len(sel) != 4:
-        cmds.error("Select the CONTROL first, then UPPER → LOWER → END joints.")
+        cmds.warning("Select the curve control first, then upper, lower and end joints.")
+        return
 
     ctrl, upper, lower, end = sel
 
@@ -126,5 +130,4 @@ def create_squash_stretch_limb():
         pos="topCenter",
         fade=True
     )
-
     print("Squash & Stretch created for:", upper, lower, end)
