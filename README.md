@@ -13,7 +13,7 @@ instructions, the goal of this tool is to be as user-friendly as possible.
 - Automative Squash and stretch functions with the option to add pole vectors 
 
 # BUG LOG
-- Squash and stretch functions currently not functional. 
+- Squash and stretch functions bug out on limbs 
 - Pole vector selection currently not functional 
 - IK finger set up to only work when joints are renamed to the right prefix
 - Currently, the only way to bring in this rigging tool box is to call it within the maya script.

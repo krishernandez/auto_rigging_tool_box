@@ -41,64 +41,52 @@ except ImportError:
 
 #----------------------------------------------------------------------------------------#
 #--------------------------------------------------------------------------- FUNCTIONS --#
+import maya.cmds as cmds
 
-def create_fk_controls(finger_prefix, num_joints=3):
-    """
-    Creates FK controls for a given finger prefix
-    """
-    finger_joints = []
-    for i in range(1, num_joints + 1):
-        joint_name = f"{finger_prefix}{i:02d}_bind_JNT"
-        if cmds.objExists(joint_name):
-            finger_joints.append(joint_name)
-        else:
-            cmds.warning(f"Joint not found: {joint_name}. Skipping.")
-            return
 
-    if not finger_joints:
-        cmds.warning(f"No joints found for {finger_prefix}. Aborting.")
+def create_fk_controls_from_selection():
+    """
+    Creates FK controls for for nay selected joint chain
+    """
+
+    joints = cmds.ls(sl=True, type="joint")
+
+    if len(joints) == 0:
+        cmds.warning("No joints selected! Select a joint chain and try again.")
+        return
+    if len(joints) < 2:
+        cmds.warning("Select at least TWO joints in order to create FK controls.")
         return
 
-    # Create FK controls
-    parent_control = None
-    for i, joint in enumerate(finger_joints, start=1):
-        control_name = f"CTRL_{finger_prefix}{i:02d}"
-        control = cmds.circle(name=control_name, normal=[1, 0, 0], radius=0.5)[0]
-        cmds.matchTransform(control, joint)
+    # Create a master control group
+    top_grp = cmds.group(empty=True, name="GRP_FK_controls")
 
-        # Parent structure
-        if parent_control:
-            cmds.parent(control, parent_control)
+    parent_ctrl = None
+
+    # Iterate through selected joints
+    for i, jnt in enumerate(joints):
+        ctrl_name = f"{jnt}_FK_CTRL"
+
+        ctrl = cmds.circle(name=ctrl_name, normal=[1, 0, 0], radius=0.5)[0]
+
+        cmds.matchTransform(ctrl, jnt)
+
+        if parent_ctrl:
+            cmds.parent(ctrl, parent_ctrl)
         else:
-            grp_name = f"GRP_{finger_prefix}_controls"
-            if not cmds.objExists(grp_name):
-                cmds.group(empty=True, name=grp_name)
-            cmds.parent(control, grp_name)
+            cmds.parent(ctrl, top_grp)
 
-        # Constraint
-        cmds.parentConstraint(control, joint, maintainOffset=True)
+        # Constrain joint to control
+        cmds.parentConstraint(ctrl, jnt, mo=True)
 
-        parent_control = control
+        parent_ctrl = ctrl
 
     cmds.select(clear=True)
-    cmds.inViewMessage(amg="✅ FK rig created for {finger_prefix} finger.", pos="topCenter", fade=True)
+    cmds.inViewMessage(
+        amg=f"✅ FK controls created for <hl>{len(joints)}</hl> joints",
+        pos="topCenter",
+        fade=True
+    )
 
 
-# --------------
 
-#Finger Fumctions
-
-def create_index_fk():
-    create_fk_controls("L_index", 3)
-
-def create_middle_fk():
-    create_fk_controls("L_middle", 3)
-
-def create_ring_fk():
-    create_fk_controls("L_ring", 3)
-
-def create_pinky_fk():
-    create_fk_controls("L_pinky", 3)
-
-def create_thumb_fk():
-    create_fk_controls("L_thumb", 3)
